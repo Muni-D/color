@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>التقييم | Simple Color Quiz 🎨</title> 
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <style>
+        /* ************************************************* */
+        /* التنسيقات العامة لصفحتك الأصلية (لغة عربية) */
+        /* ************************************************* */
+        
+        /* Body and Background */
+        body {
+            /* الخلفية بيضاء + الصورة في اليسار والأسفل */
+            background-color: white; 
+            background-image: url('fbee7ab4-95b3-4fdb-a9f8-b858254e3158.png'), url('bg_image.png'); 
+            background-repeat: no-repeat; 
+            background-position: left bottom; 
+            background-attachment: fixed; 
+            background-size: 350px; /* المقاس الأكبر الجديد */
+            
+            font-family: Arial, sans-serif; 
+            color: black; 
+            direction: rtl; 
+            padding-top: 70px; /* مسافة كافية أسفل الشريط */
+            margin: 0; 
+            text-align: center; 
+        }
+        
+        /* Heading Styles */
+        h1, h2, h3 { 
+            color: #333; 
+            margin-top: 20px;
+            font-size: 1.8em;
+        }
+
+        h1 {
+             font-size: 3em; 
+             margin-bottom: 30px;
+        }
+        
+        /* تنسيقات شريط التنقل */
+        .menu li:hover .submenu { display: block !important; }
+        .menu a { color: white; text-decoration: none; padding: 15px 20px; display: block; }
+        nav { background-color: #FF69B4; position: fixed; top: 0; width: 100%; z-index: 10; }
+        .menu { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        .menu li { margin: 0 15px; position: relative; }
+        .submenu { 
+            background-color: #FF69B4; position: absolute; top: 100%; right: 0; min-width: 150px; 
+            list-style: none; padding: 0; margin: 0; display: none;
+        }
+
+
+        /* ************************************************* */
+        /* CSS الخاص بالاختبار (مع الإطار الملون) */
+        /* ************************************************* */
+        
+        .quiz-container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            
+            /* الإطار الملون حول الأسئلة */
+            border: 4px solid #FF69B4; 
+            direction: ltr; /* لضبط محاذاة الاختبار باللغة الإنجليزية */
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        
+        /* تنسيق الخيارات كـ Labels */
+        .option-label {
+            display: block; padding: 10px; margin: 8px 0; border: 2px solid #ccc;
+            border-radius: 5px; cursor: pointer; text-align: center;
+        }
+        
+        /* إخفاء زر الراديو الأصلي */
+        .question input[type="radio"] { display: none; }
+
+        /* تمييز الخيار عند اختياره قبل الإرسال */
+        .question input[type="radio"]:checked + .option-label {
+            background-color: #e6f2ff; border-color: #007bff;
+        }
+        
+        /* تلوين النص حسب الإجابة */
+        .color-blue { color: blue; } .color-red { color: red; } .color-yellow { color: gold; } 
+
+        /* تأثيرات التصحيح النهائي (الأخضر والأحمر) */
+        .correct { border-color: green !important; background-color: #d4edda !important; }
+        .incorrect { border-color: red !important; background-color: #f8d7da !important; }
+
+        .submit-btn {
+            width: 90%; padding: 12px; background-color: #007bff; color: white;
+            border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em;
+            margin-top: 15px;
+        }
+        .submit-btn:disabled { background-color: #ccc; }
+        
+        #final-result-display { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+    </style>
+</head>
+<body> 
+    
+    <nav style="background-color: #FF69B4; position: fixed; top: 0; width: 100%; z-index: 10;"> 
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="goals.html"> Learning Outcomes</a></li>
+            <li><a href="lesson.html">Lesson</a></li> 
+            
+            <li>
+                <a href="evaluation_red.html">Assessment ▼</a>
+                <ul class="submenu">
+                    <li><a href="evaluation_red.html">Activity 1</a></li> 
+                    <li><a href="evaluation_blue.html">Activity 2</a></li>
+                    <li><a href="evaluation_yellow.html">Activity 3</a></li>
+                </ul>
+            </li>
+        </ul> 
+    </nav>
+    
+    <div class="quiz-container">
+        <h1>Simple Color Quiz</h1>
+        <p>Select your answers, then click 'Show Final Score'.</p>
+        
+        <form id="quiz-form">
+            
+            <div class="question" id="q1" data-correct-value="blue">
+                <h3>1. What is the color of the sea?</h3>
+                <input type="radio" id="q1_blue" name="q1" value="blue">
+                <label for="q1_blue" class="option-label"><span class="color-blue">Blue</span></label>
+                
+                <input type="radio" id="q1_red" name="q1" value="red">
+                <label for="q1_red" class="option-label"><span class="color-red">Red</span></label>
+                
+                <input type="radio" id="q1_yellow" name="q1" value="yellow">
+                <label for="q1_yellow" class="option-label"><span class="color-yellow">Yellow</span></label>
+            </div>
+            
+            <div class="question" id="q2" data-correct-value="blue">
+                <h3>2. What is the color of the sky?</h3>
+                <input type="radio" id="q2_blue" name="q2" value="blue">
+                <label for="q2_blue" class="option-label"><span class="color-blue">Blue</span></label>
+                
+                <input type="radio" id="q2_red" name="q2" value="red">
+                <label for="q2_red" class="option-label"><span class="color-red">Red</span></label>
+                
+                <input type="radio" id="q2_yellow" name="q2" value="yellow">
+                <label for="q2_yellow" class="option-label"><span class="color-yellow">Yellow</span></label>
+            </div>
+            
+            <div class="question" id="q3" data-correct-value="blue">
+                <h3>3. What is the color of the sea?</h3>
+                <input type="radio" id="q3_blue" name="q3" value="blue">
+                <label for="q3_blue" class="option-label"><span class="color-blue">Blue</span></label>
+                
+                <input type="radio" id="q3_yellow" name="q3" value="yellow">
+                <label for="q3_yellow" class="option-label"><span class="color-yellow">Yellow</span></label>
+                
+                <input type="radio" id="q3_red" name="q3" value="red">
+                <label for="q3_red" class="option-label"><span class="color-red">Red</span></label>
+            </div>
+
+            <button type="button" class="submit-btn" id="submit-quiz-btn" onclick="calculateFinalScore()">Show Final Score</button>
+        </form>
+
+        <div id="final-result-display"></div>
+    </div>
+
+    <script>
+        const questionIds = ['q1', 'q2', 'q3'];
+        let quizSubmitted = false;
+
+        function calculateFinalScore() {
+            if (quizSubmitted) {
+                alert("The quiz has already been submitted. Please refresh to try again.");
+                return;
+            }
+
+            let correctCount = 0;
+            let allAnswered = true;
+            
+            questionIds.forEach(questionId => {
+                const questionElement = document.getElementById(questionId);
+                const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+                const correctAnswerValue = questionElement.getAttribute('data-correct-value');
+                
+                if (!selectedOption) {
+                    allAnswered = false;
+                    return; 
+                }
+
+                const studentAnswerValue = selectedOption.value;
+                const isCorrect = studentAnswerValue === correctAnswerValue;
+
+                // Disable interaction after submission
+                const radioButtons = questionElement.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => radio.disabled = true);
+
+                // Clear previous colors
+                const allLabels = questionElement.querySelectorAll('.option-label');
+                allLabels.forEach(label => label.classList.remove('correct', 'incorrect'));
+
+                // Get the label selected by the student
+                const selectedLabel = document.querySelector(`label[for="${selectedOption.id}"]`);
+                
+                if (isCorrect) {
+                    // Correct: Highlight student's choice (green)
+                    correctCount++;
+                    if (selectedLabel) selectedLabel.classList.add('correct');
+                } else {
+                    // Incorrect: Highlight student's choice (red)
+                    if (selectedLabel) selectedLabel.classList.add('incorrect');
+
+                    // Highlight the actual correct answer (green)
+                    const correctOptionId = `${questionId}_${correctAnswerValue}`;
+                    const correctLabel = document.querySelector(`label[for="${correctOptionId}"]`);
+                    if (correctLabel) correctLabel.classList.add('correct');
+                }
+            });
+
+            const resultElement = document.getElementById('final-result-display');
+            
+            if (!allAnswered) {
+                alert("You must answer ALL questions before showing the score! 💡");
+                // Re-enable buttons if not all answered
+                questionIds.forEach(questionId => {
+                    const radioButtons = document.getElementById(questionId).querySelectorAll('input[type="radio"]');
+                    radioButtons.forEach(radio => radio.disabled = false);
+                });
+                return;
+            }
+
+            // Disable the submission button
+            document.getElementById('submit-quiz-btn').disabled = true;
+            quizSubmitted = true;
+
+
+            if (correctCount === questionIds.length) {
+                resultElement.innerHTML = `🎉 Perfect Score! You got ${correctCount}/${questionIds.length} correct.`;
+                resultElement.style.color = 'green';
+            } else {
+                resultElement.innerHTML = `Keep practicing! You got ${correctCount}/${questionIds.length} correct.`;
+                resultElement.style.color = 'red';
+            }
+        }
+        
+        // Prevent default form submission
+        document.getElementById('quiz-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

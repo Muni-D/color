@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تقييم اللون | Color Journey 🎨</title> 
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <style> 
+        body {
+            /* الخلفية بيضاء + الصورة في اليسار والأسفل (تأكدي من اسم الملف) */
+            background-color: white; 
+            background-image: url('fbee7ab4-95b3-4fdb-a9f8-b858254e3158.png'), url('bg_image.png'); 
+            background-repeat: no-repeat; 
+            background-position: left bottom; 
+            background-attachment: fixed; 
+            background-size: 350px; /* المقاس الأكبر الجديد */
+            
+            font-family: Arial, sans-serif; color: black; direction: rtl; 
+            padding-top: 50px; /* مسافة كافية أسفل الشريط الجديد */
+            margin: 0; text-align: center; 
+        }
+        /* التنسيقات العامة التي كانت لديك */
+        body {
+            font-family: Arial, sans-serif; 
+            color: #333; 
+            direction: rtl; 
+            padding-top: 70px; 
+            margin: 0; 
+            background-color: #f4f4f4; 
+            text-align: center;
+        }
+
+        /* تنسيقات شريط التنقل */
+        .menu li:hover .submenu {
+            display: block !important;
+        }
+        .menu a {
+            color: white; 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            display: block;
+        }
+        
+        /* ************************************************* */
+        /* CSS الخاص بلعبة السحب والإفلات (المُبسَّط) */
+        /* ************************************************* */
+        
+        h1 { color: #1a1a1a; }
+
+        /* مربع سحب الصور */
+        .drag-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid #666; 
+            border-radius: 5px;
+            cursor: grab;
+            float: left;
+            overflow: hidden; 
+            background-color: #fff;
+            display: flex;
+        }
+
+        /* الصورة داخل المربع (لحل مشكلة المقاس) */
+        .drag-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        /* دوائر الإفلات */
+        .drop-zone {
+            width: 140px; 
+            height: 140px;
+            border-radius: 50%;
+            margin: 20px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            border: 4px dashed #333; 
+            float: left; 
+        }
+        
+        #zone-yellow { background-color: gold; }
+        #zone-red { background-color: red; }
+        #zone-blue { background-color: blue; }
+
+        .drop-zone.hover {
+            border-color: green;
+        }
+        
+        /* حجم الصورة عند وضعها داخل الدائرة */
+        .drop-zone .drag-box {
+            width: 40px; 
+            height: 40px;
+            margin: 2px;
+            float: none;
+            border: 1px solid white;
+        }
+        
+        .container {
+            overflow: auto;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        
+        /* الخط الفاصل */
+        hr {
+            border: 0; 
+            height: 1px; 
+            background-color: #ccc; 
+            margin: 20px auto; 
+            width: 60%;
+        }
+
+    </style>
+</head>
+<body> 
+    
+    <nav style="background-color: #FF69B4; position: fixed; top: 0; width: 100%; z-index: 10;"> 
+        <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+            <li style="margin: 0 15px;"><a href="index.html">Home</a></li>
+            <li style="margin: 0 15px;"><a href="about-us.html">About Us</a></li>
+            <li style="margin: 0 15px;"><a href="goals.html">Learning Outcomes</a></li>
+            <li style="margin: 0 15px;"><a href="lesson.html">Lesson</a></li> 
+            
+            <li style="margin: 0 15px; position: relative;">
+                <a href="evaluation_red.html">Assessment ▼</a>
+                
+                <ul class="submenu" style="background-color: #FF69B4; position: absolute; top: 100%; right: 0; min-width: 150px; list-style: none; padding: 0; margin: 0; display: none;">
+                    
+                    <li><a href="evaluation_red.html">Activity 1</a></li> 
+                    
+                    <li><a href="evaluation_blue.html">Activity 2</a></li>
+                    
+                    <li><a href="evaluation_yellow.html">Activity 3</a></li>
+                </ul>
+            </li>
+        </ul> 
+    </nav>
+
+    <main>
+        
+        <div class="activity-content" style="max-width: 700px; margin: 50px auto; padding: 30px; border: 2px solid red; border-radius: 10px; background-color: #fff8f8;">
+            
+            <h2 style="color: red; text-align: center; border-bottom: 2px solid red; padding-bottom: 15px; margin-top: 0;">Today's Activity</h2>
+            <h3 style="color: #333; text-align: center; margin-bottom: 30px;">!Choose the correct color</h3>
+            
+            <form id="redQuizForm">
+                <ol style="list-style-type: none; padding: 0;">
+                    
+                    <li class="image-choice" style="margin-bottom: 40px; border: 1px solid #fdd; padding: 15px; border-radius: 5px; text-align: right;">
+                        <p style="font-weight: bold; color: #333; text-align: center;">?What is the color Red</p>
+                        
+                        <div style="display: flex; justify-content: space-around; margin-top: 15px; flex-wrap: wrap;">
+                            
+                            <label style="cursor: pointer; border: 3px solid transparent; padding: 5px; transition: border-color 0.2s; border-radius: 8px;">
+                                <input type="radio" name="q_red_1" value="A" style="display: none;">
+                                <img src="Unknown.jpeg" alt="صورة الخيار أ" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; display: block; border: 2px solid #ccc;">
+                            </label>
+                            
+                            <label style="cursor: pointer; border: 3px solid transparent; padding: 5px; transition: border-color 0.2s; border-radius: 8px;">
+                                <input type="radio" name="q_red_1" value="B" style="display: none;">
+                                <img src="balonyaalw.png" alt="صورة الخيار ب" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; display: block; border: 2px solid #ccc;">
+                            </label>
+                            
+                            <label style="cursor: pointer; border: 3px solid transparent; padding: 5px; transition: border-color 0.2s; border-radius: 8px;">
+                                <input type="radio" name="q_red_1" value="C" style="display: none;">
+                                <img src="see.png" alt="صورة الخيار ج" style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover; display: block; border: 2px solid #ccc;">
+                            </label>
+                        </div>
+                        <p style="text-align: center; margin-top: 10px; font-size: 0.9em; color: #888;"> (Click on the image to choose) </p>
+                    </li>
+                    
+                    <li style="margin-bottom: 30px; border: 1px solid #fdd; padding: 15px; border-radius: 5px; text-align: right;">
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; justify-content: center; margin-bottom: 15px;">
+                            <p style="font-weight: bold; color: #333; margin: 0;">?What is this color</p>
+                            <img src="mroor.png" alt="صورة للون أحمر" style="width: 100px; height: 100px; border-radius: 5px; object-fit: cover; border: 1px solid #ccc;">
+                        </div>
+                        
+                        <div style="margin-top: 10px; text-align: center;">
+                            <label style="display: inline-block; margin: 0 15px;">
+                                <input type="radio" name="q_red_2" value="A"> Red
+                            </label>
+                            <label style="display: inline-block; margin: 0 15px;">
+                                <input type="radio" name="q_red_2" value="B"> Blue
+                            </label>
+                            <label style="display: inline-block; margin: 0 15px;">
+                                <input type="radio" name="q_red_2" value="C"> Yellow
+                            </label>
+                        </div>
+                    </li>
+                    
+                </ol>
+        
+                <button type="submit" style="display: block; width: 100%; padding: 15px; background-color: red; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; margin-top: 20px;">
+                 Submit Answers 
+                </button>
+            </form>
+            
+            <div id="result"></div>
+            
+        </div>
+        
+    </main>
+
+    <script>
+        const form = document.getElementById('redQuizForm');
+        const resultDiv = document.getElementById('result');
+        const maxScore = 8;
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            let score = 0;
+            
+            // ************ جمع النقاط ************
+            // الإجابة الصحيحة Q1: A (Unknown.jpeg)
+            const q1Answer = form.elements['q_red_1'].value;
+            if (q1Answer === 'A') {
+                score += 4;
+            }
+
+            // الإجابة الصحيحة Q2: A (Red)
+            const q2Answer = form.elements['q_red_2'].value;
+            if (q2Answer === 'A') {
+                score += 4;
+            }
+
+            // ************ عرض النتيجة والرسالة النهائية (حسب الرسائل الجديدة) ************
+            let message = '';
+            let messageColor = '';
+
+            if (score === maxScore) {
+                // رسالة العلامة الكاملة الجديدة
+                message = `Well done! You remembered the colors now. You got ${score} out of ${maxScore}. 🥳`;
+                messageColor = '#008000'; // أخضر
+            } else {
+                // رسالة عدم العلامة الكاملة الجديدة
+                message = `Activity result: ${score} out of ${maxScore}. Better luck next time. Please review the lesson and try again.`;
+                messageColor = '#cc0000'; // أحمر
+            }
+
+            resultDiv.innerHTML = message;
+            resultDiv.style.backgroundColor = (score === maxScore) ? '#e6ffe6' : '#ffe6e6';
+            resultDiv.style.color = messageColor;
+        });
+    </script>
+</body>
+</html>

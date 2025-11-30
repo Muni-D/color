@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>الرئيسية | Color Journey 🎨</title> 
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <style>
+        /* التنسيقات غير المتعلقة بالشريط (الخلفية، الجسم، إلخ) */
+        
+        /* Body and Background */
+        body {
+            /* الخلفية بيضاء + الصورة في اليسار والأسفل (تأكدي من اسم الملف) */
+            background-color: white; 
+            background-image: url('fbee7ab4-95b3-4fdb-a9f8-b858254e3158.png'), url('bg_image.png'); 
+            background-repeat: no-repeat; 
+            background-position: left bottom; 
+            background-attachment: fixed; 
+            background-size: 350px; /* المقاس الأكبر الجديد */
+            
+            font-family: Arial, sans-serif; color: black; direction: rtl; 
+            padding-top: 50px; /* مسافة كافية أسفل الشريط الجديد */
+            margin: 0; text-align: center; 
+        }
+
+        /* Page Content */
+        .section {
+            padding: 60px 20px; min-height: 80vh; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            margin-bottom: 500px;
+        }
+
+        /* Heading Styles (للتأكد من أنها داكنة على الخلفية البيضاء) */
+        h1, h2, h3 { 
+            color: #333; 
+            margin-top: 20px;
+            margin-bottom: 350px;
+            font-size: 1.8em;
+        }
+
+        h1 {
+             font-size: 3em; 
+             margin-bottom: 30px;
+        }
+
+        p {
+            margin: 10px auto; max-width: 900px; padding: 0 10px; text-align: right; line-height: 1.6;
+            color: #333; 
+        }
+    </style>
+</head>
+<body> 
+    
+    <nav style="background-color: #FF69B4; position: fixed; top: 0; width: 100%; z-index: 10;"> 
+        <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+            <li style="margin: 0 15px;"><a href="index.html">Home</a></li>
+            <li style="margin: 0 15px;"><a href="about-us.html">Abot Us</a></li>
+            <li style="margin: 0 15px;"><a href="goals.html">Learning Outcomes</a></li>
+            <li style="margin: 0 15px;"><a href="lesson.html">Lesson</a></li> 
+            
+            <li style="margin: 0 15px; position: relative;">
+                <a href="evaluation_red.html">Assessment ▼</a>
+                
+                <ul class="submenu" style="background-color: #FF69B4; position: absolute; top: 100%; right: 0; min-width: 150px; list-style: none; padding: 0; margin: 0; display: none;">
+                    
+                    <li><a href="evaluation_red.html">Activity 1</a></li> 
+                    
+                    <li><a href="evaluation_blue.html">Activity 2</a></li>
+                    
+                    <li><a href="evaluation_yellow.html">Activity 3</a></li>
+                </ul>
+            </li>
+        </ul> 
+    </nav>
+    
+    <section class="section" style="direction: ltr;">
+    <h1> ⭐ About Us</h1>
+    
+    <p style="text-align: left;">Welcome to our educational website dedicated to the lesson on Colors! This platform has been designed as a fun and simplified space to help first-grade students learn about colors in an engaging and accessible way.
+    </p>
+    
+    <p style="text-align: left;">The website offers educational content focused on a single lesson, but it is packed with interactive media such as: clear images, 
+        simplified video clips, and enjoyable activities that help the child understand and distinguish between colors.
+    </p>
+
+    <p style="text-align: left;">Our goal is to ensure that the first-grader learns colors through play, observation,
+         and experimentation, utilizing practical activities like matching, drag-and-drop, and interactive coloring.
+    </p>
+
+    <p style="text-align: left;">
+        We strive for this website to be a lightweight and fast tool, assisting both the teacher and the parent in delivering the colors lesson in a modern, enjoyable way, and encouraging the child to explore and learn with fun and confidence
+    </p>
+    
+    <p style="font-weight: bold; font-size: 1.2em; text-align: center; color: rgb(0, 0, 0);">
+    Our Motto!
+    </p>
+    <p style="font-weight: bold; font-size: 1.2em; text-align: center; color: rgb(192, 7, 7);">
+    Learning Colors… We Discover… We Have Fun!
+    </p>
+</section>
+</body>
+</html>

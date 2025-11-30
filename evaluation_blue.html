@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تقييم اللون | Color Journey 🎨</title> 
+    
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <style> 
+        body {
+            /* الخلفية بيضاء + الصورة في اليسار والأسفل (تأكدي من اسم الملف) */
+            background-color: white; 
+            background-image: url('fbee7ab4-95b3-4fdb-a9f8-b858254e3158.png'), url('bg_image.png'); 
+            background-repeat: no-repeat; 
+            background-position: left bottom; 
+            background-attachment: fixed; 
+            background-size: 350px; /* المقاس الأكبر الجديد */
+            
+            font-family: Arial, sans-serif; color: black; direction: rtl; 
+            padding-top: 50px; /* مسافة كافية أسفل الشريط الجديد */
+            margin: 0; text-align: center; 
+        }
+        /* التنسيقات العامة التي كانت لديك */
+        body {
+            font-family: Arial, sans-serif; 
+            color: #333; 
+            direction: rtl; 
+            padding-top: 70px; 
+            margin: 0; 
+            background-color: #f4f4f4; 
+            text-align: center;
+        }
+
+        /* تنسيقات شريط التنقل */
+        .menu li:hover .submenu {
+            display: block !important;
+        }
+        .menu a {
+            color: white; 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            display: block;
+        }
+        
+        /* ************************************************* */
+        /* CSS الخاص بلعبة السحب والإفلات (المُبسَّط) */
+        /* ************************************************* */
+        
+        h1 { color: #1a1a1a; }
+
+        /* مربع سحب الصور */
+        .drag-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid #666; 
+            border-radius: 5px;
+            cursor: grab;
+            float: left;
+            overflow: hidden; 
+            background-color: #fff;
+            display: flex;
+        }
+
+        /* الصورة داخل المربع (لحل مشكلة المقاس) */
+        .drag-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        /* دوائر الإفلات */
+        .drop-zone {
+            width: 140px; 
+            height: 140px;
+            border-radius: 50%;
+            margin: 20px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            border: 4px dashed #333; 
+            float: left; 
+        }
+        
+        #zone-yellow { background-color: gold; }
+        #zone-red { background-color: red; }
+        #zone-blue { background-color: blue; }
+
+        .drop-zone.hover {
+            border-color: green;
+        }
+        
+        /* حجم الصورة عند وضعها داخل الدائرة */
+        .drop-zone .drag-box {
+            width: 40px; 
+            height: 40px;
+            margin: 2px;
+            float: none;
+            border: 1px solid white;
+        }
+        
+        .container {
+            overflow: auto;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        
+        /* الخط الفاصل */
+        hr {
+            border: 0; 
+            height: 1px; 
+            background-color: #ccc; 
+            margin: 20px auto; 
+            width: 60%;
+        }
+
+    </style>
+</head>
+<body> 
+    
+    <nav style="background-color: #FF69B4; position: fixed; top: 0; width: 100%; z-index: 10;"> 
+        <ul class="menu" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+            <li style="margin: 0 15px;"><a href="index.html">Home</a></li>
+            <li style="margin: 0 15px;"><a href="about-us.html">About Us</a></li>
+            <li style="margin: 0 15px;"><a href="goals.html">earning Outcomes</a></li>
+            <li style="margin: 0 15px;"><a href="lesson.html">Lesson</a></li> 
+            
+            <li style="margin: 0 15px; position: relative;">
+                <a href="evaluation_red.html">Assessment ▼</a>
+                
+                <ul class="submenu" style="background-color: #FF69B4; position: absolute; top: 100%; right: 0; min-width: 150px; list-style: none; padding: 0; margin: 0; display: none;">
+                    
+                    <li><a href="evaluation_red.html">Activity 1</a></li> 
+                    
+                    <li><a href="evaluation_blue.html">Activity 2</a></li>
+                    
+                    <li><a href="evaluation_yellow.html">Activity 3</a></li>
+                </ul>
+            </li>
+        </ul> 
+    </nav>
+
+    
+    <h1>!Drag the Pictures to the Correct Color Zone</h1>
+
+    <div class="container">
+        
+        <div class="drag-box" id="drag-lemon" draggable="true" ondragstart="drag(event)">
+            <img src="lemon.jpeg" alt="Lemon">
+        </div>
+        
+        <div class="drag-box" id="drag-sun" draggable="true" ondragstart="drag(event)">
+            <img src="suunn.jpeg" alt="Sun">
+        </div>
+        
+        <div class="drag-box" id="drag-banana" draggable="true" ondragstart="drag(event)">
+            <img src="bnana0.png" alt="Banana">
+        </div>
+        
+    </div>
+    
+    <hr>
+
+    <div class="container">
+        
+        <div class="drop-zone" id="zone-yellow" ondrop="drop(event, 'YELLOW')" ondragover="allowDrop(event)">
+            YELLOW
+            <p style="font-size: 0.5em;">Drop Here!</p>
+        </div>
+
+        <div class="drop-zone" id="zone-red" ondrop="drop(event, 'RED')" ondragover="allowDrop(event)">
+            RED
+            <p style="font-size: 0.5em;">Drop Here!</p>
+        </div>
+
+        <div class="drop-zone" id="zone-blue" ondrop="drop(event, 'BLUE')" ondragover="allowDrop(event)">
+            BLUE
+            <p style="font-size: 0.5em;">Drop Here!</p>
+        </div>
+    </div>
+
+    <script>
+        let yellowDropCounter = 0; 
+        const totalYellowItems = 3; 
+        
+        // IDs الصور التي يجب أن تسحب للـ Yellow
+        const yellowImageIds = ['drag-lemon', 'drag-sun', 'drag-banana'];
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('hover');
+        }
+
+        // دالة السحب
+        function drag(ev) {
+            // نستخدم .closest للتأكد من تحديد الصندوق بأكمله
+            var targetElement = ev.target.closest('.drag-box');
+            
+            if (targetElement) {
+                ev.dataTransfer.setData("text", targetElement.id);
+                targetElement.style.opacity = '0.5';
+            }
+        }
+
+        // دالة الإفلات
+        function drop(ev, correctZoneColor) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('hover');
+            
+            var draggedId = ev.dataTransfer.getData("text");
+            var draggedElement = document.getElementById(draggedId);
+
+            if (!draggedElement) return;
+
+            draggedElement.style.opacity = '1';
+
+            // إذا كان العنصر في المكان الصحيح مسبقاً، ننهي الدالة
+            if (yellowImageIds.includes(draggedId) && draggedElement.parentElement.id === 'zone-yellow') {
+                 alert("This picture is already here!");
+                 return;
+            }
+
+            const isYellowItem = yellowImageIds.includes(draggedId);
+            const isCorrectZone = correctZoneColor === 'YELLOW';
+
+            if (isYellowItem && isCorrectZone) {
+                
+                // *** إجابة صحيحة ***
+                ev.currentTarget.appendChild(draggedElement);
+                draggedElement.draggable = false;
+                yellowDropCounter++;
+                
+                if (yellowDropCounter < totalYellowItems) {
+                    alert("Great job! Keep going! 👍");
+                } else {
+                    ev.currentTarget.style.backgroundColor = '#8ac926';
+                    ev.currentTarget.querySelector('p').style.display = 'none'; 
+                    alert("Excellent! You found all the YELLOW items! 🎉");
+                }
+                
+            } else {
+                
+                // *** إجابة خاطئة ***
+                alert("Incorrect! Try again. 🤔");
+            }
+        }
+    </script>
+</body>
+</html>
